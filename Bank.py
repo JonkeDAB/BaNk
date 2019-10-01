@@ -1,27 +1,39 @@
 # inloggning
-användarnamn = "jonas"
-lösenord = 123
+inloggning = 0
 
-user = input("Skriv in ditt användarnamn: ")
-pin = int(input("Skriv in din pinkod:"))
+while inloggning == 0:
+    inloggning = int(input("Vill du logga in [1], eller skapa konto [2]? "))
+    if inloggning == 1: # Logga in
+        användarnamn = input("Skriv in ditt användarnamn: ").lower()
+        lösenord = input("Skriv in ditt lösenord: ")
+    elif inloggning == 2: # Skapa konto
+        while True:
+            inloggning = 0
+            print("Då skapar vi ett konto!")
+            användarnamn = input("Skriv in ett användarnamn: ").lower()
+            lösenord1 = input("Skriv in ett lösenord: ")
+            lösenord2 = input("Skriv in lösenordet igen: ")
 
-while user != användarnamn:
-    user = input("Fel användarnamn, prova igen: ").lower()
-
-while pin != lösenord:
-    pin = int(input("Fel pinkod, prova igen:  "))
+            if lösenord1 != lösenord2: # Ifall lösenordet inte överresnstämmer när du skapar kontot
+                print("Lösenorden överensstämmer inte, du måste börja om med skapandet av kontot på grund av säkerhetsskäl.")
+                inloggning = 2
+            
+            else:
+                break
+    else:
+        inloggning = 0
 
 
 # Insättning/ Uttag
-# menu 1 insättning
-# menu 2 uttag
-# menu 3 avsluta
 saldo = 0
 menu = 0
 while menu == 0:
-    menu = int(input("Insättning 1, uttag 2, avsluta 3: "))
+    menu = int(input("Insättning [1], uttag [2], övrigt [3], avsluta [4]: "))
     if menu == 1: # Insättning
-        insättning = float(input("Hur mycket vill du sätta in? "))
+        try:
+            insättning = float(input("Hur mycket vill du sätta in? "))
+        except:
+            menu = 1
         saldo = saldo + insättning
         print(saldo)
         menu = 0
@@ -30,12 +42,15 @@ while menu == 0:
         uttag = float(input("Hur mycket vill du ta ut? "))
         saldo = saldo - uttag
         if saldo < 0:
-            print("Oops nu har du inga perngar kvar")
+            print("Oops nu har du inga pengar kvar")
             menu = 0
         print(saldo)
         menu = 0
+    
+    elif menu == 3:
+        print("HEJ")
 
-    elif menu == 3: # Stänger av
+    elif menu == 4: # Stänger av
         print("BYE BYE")
         exit()
 
