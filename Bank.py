@@ -24,9 +24,10 @@ while inloggning == 0: # Inloggningsmenyn
         inloggning = 0 # Går tillbaka till första menyn där du kan välja att logga in
 
 
-# Insättning/ Uttag
-saldoFil = open("saldo.txt", "r+")
+# Huvudmeny
+saldoFil = open("saldo.txt", "r")
 saldo = float(saldoFil.readline())
+saldoFil.close()
 menu = 0
 while menu == 0:
     menu = int(input("Insättning [1], uttag [2], övrigt [3], avsluta [4]: ")) # Vad du vill göra närdu loggat in, skriver du något annat än ett heltal så går den tillbaka med hjälp av Else satsen längre ned
@@ -34,7 +35,7 @@ while menu == 0:
         insättning = float(input("Hur mycket vill du sätta in? ")) # Insättningen är en float, vilket gör att du kan skriva decimaltal
         saldo = saldo + insättning # räknar ut det nya saldot
 
-        saldoFil.write(str(saldo)) # Skriver det nya saldot till saldo.txt
+        open("saldoFil", "w") # Skriver det nya saldot till saldo.txt
         saldoFil.close() # Stänger saldofilen
         print(saldo) # Skriver ut värdet i saldofilen
         menu = 0 # Går tillbaka till huvudmenyn så du kan fortsätta sätta in/ta ut
@@ -43,6 +44,7 @@ while menu == 0:
         uttag = float(input("Hur mycket vill du ta ut? "))
         saldo = saldo - uttag
 
+        open("saldoFil", "w")
         saldoFil.write(str(saldo))
         saldoFil.close()
 
@@ -60,4 +62,4 @@ while menu == 0:
         exit()
 
     else:
-        menu = 0 # Backar tillbaka till huvudb menyn ifall du stavar fel någonstans
+        menu = 0 # Backar tillbaka till huvudmenyn ifall du stavar fel någonstans
