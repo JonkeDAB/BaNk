@@ -25,9 +25,15 @@ while inloggning == 0: # Inloggningsmenyn
 
 
 # Huvudmeny
-saldoFil = open("saldo.txt", "r")
-saldo = float(saldoFil.readline())
-saldoFil.close()
+try: # försöker öppna en befintlig fil med namnet saldo för att läsa in ifrån
+    saldoFil = open("saldo.txt", "r")
+    saldo = float(saldoFil.readline())
+    saldoFil.close()
+except: # Finns ingen fil skapar den en ny fil som heter saldo.txt med 0 kronor till en början
+    saldoFil = open("saldo.txt", "w+")
+    saldoFil.write(str(0))
+    saldoFil.close()
+
 menu = 0
 while menu == 0:
     menu = int(input("Insättning [1], uttag [2], övrigt [3], avsluta [4]: ")) # Vad du vill göra närdu loggat in, skriver du något annat än ett heltal så går den tillbaka med hjälp av Else satsen längre ned
