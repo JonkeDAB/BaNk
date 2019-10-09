@@ -27,21 +27,25 @@ while inloggning == 0: # Inloggningsmenyn
 # Huvudmeny
 try: # försöker öppna en befintlig fil med namnet saldo för att läsa in ifrån
     saldoFil = open("saldo.txt", "r")
-    saldo = float(saldoFil.readline())
+    saldo = float(saldoFil.readline(
+        
+    ))
     saldoFil.close()
 except: # Finns ingen fil skapar den en ny fil som heter saldo.txt med 0 kronor till en början
     saldoFil = open("saldo.txt", "w+")
     saldoFil.write(str(0))
     saldoFil.close()
 
+print(saldo)
+
 menu = 0
 while menu == 0:
-    menu = int(input("Insättning [1], uttag [2], övrigt [3], avsluta [4]: ")) # Vad du vill göra närdu loggat in, skriver du något annat än ett heltal så går den tillbaka med hjälp av Else satsen längre ned
+    menu = int(input("Insättning [1], uttag [2], övrigt [3], avsluta [4]: ")) # Vad du vill göra när du loggat in, skriver du något annat än ett heltal så går den tillbaka med hjälp av Else satsen längre ned
     if menu == 1: # Insättning
         insättning = float(input("Hur mycket vill du sätta in? ")) # Insättningen är en float, vilket gör att du kan skriva decimaltal
         saldo = saldo + insättning # räknar ut det nya saldot
 
-        saldoFil = open("saldoFil", "w") # Skriver det nya saldot till saldo.txt
+        saldoFil = open("saldo.txt", "r+") # Skriver det nya saldot till saldo.txt
         saldoFil.write(str(saldo)) # Försöker skriva det nya saldot till filen
         saldoFil.close() # Stänger saldofilen
 
@@ -52,7 +56,7 @@ while menu == 0:
         uttag = float(input("Hur mycket vill du ta ut? "))
         saldo = saldo - uttag
 
-        saldoFil = open("saldoFil", "w")
+        saldoFil = open("saldo.txt", "r+")
         saldoFil.write(str(saldo))
         saldoFil.close()
 
@@ -63,11 +67,11 @@ while menu == 0:
         menu = 0
     
     elif menu == 3: # Inte gjort något här än men här kan fler funktioner läggas in
-        print("HEJ")
+        print("Har inte lagt till något här, kan komma fler funktioner i framtiden")
+        menu = 0
 
     elif menu == 4: # Stänger av
-        print("BYE BYE")
-        exit()
+        exit(print("BYE BYE"))
 
     else:
         menu = 0 # Backar tillbaka till huvudmenyn ifall du stavar fel någonstans
