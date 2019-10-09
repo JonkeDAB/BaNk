@@ -35,23 +35,25 @@ while menu == 0:
         insättning = float(input("Hur mycket vill du sätta in? ")) # Insättningen är en float, vilket gör att du kan skriva decimaltal
         saldo = saldo + insättning # räknar ut det nya saldot
 
-        open("saldoFil", "w") # Skriver det nya saldot till saldo.txt
+        saldoFil = open("saldoFil", "w") # Skriver det nya saldot till saldo.txt
+        saldoFil.write(str(saldo)) # Försöker skriva det nya saldot till filen
         saldoFil.close() # Stänger saldofilen
-        print(saldo) # Skriver ut värdet i saldofilen
+
+        print("Du har nu", saldo, "kronor på ditt konto") # Skriver ut värdet i saldofilen
         menu = 0 # Går tillbaka till huvudmenyn så du kan fortsätta sätta in/ta ut
 
     elif menu == 2: # Uttag
         uttag = float(input("Hur mycket vill du ta ut? "))
         saldo = saldo - uttag
 
-        open("saldoFil", "w")
+        saldoFil = open("saldoFil", "w")
         saldoFil.write(str(saldo))
         saldoFil.close()
 
         if saldo < 0: # Om du har negativt saldo får du en varning om att pengarna är slut
             print("Oops nu har du inga pengar kvar")
             menu = 0
-        print(saldo)
+        print("Du har", saldo, "kronor kvar, sätt in mer pengar så att saldot blir positivt!")
         menu = 0
     
     elif menu == 3: # Inte gjort något här än men här kan fler funktioner läggas in
